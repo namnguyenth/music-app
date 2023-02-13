@@ -2,8 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+
 class Track(models.Model):
-    id = models.AutoField(primary_key=True, null=True, unique=True)
+    id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=250, null=True)
     # genre_ref = models.IntegerField(null=True)
     # artist_ref = models.IntegerField(null=True)

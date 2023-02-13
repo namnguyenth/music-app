@@ -3,9 +3,11 @@ from django.db import models
 # Create your models here.
 
 
-class Nation(models.Model):
-    id = models.AutoField(primary_key=True, null=True, unique=True)
+class Artist(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=250, null=True)
+    birth_date = models.DateTimeField(null=True)
+    nation_ref = models.ForeignKey('Nation', null=True, on_delete=models.CASCADE)
     created_date = models.DateTimeField(null=True)
     created_by = models.CharField(max_length=75, null=True)
     updated_date = models.DateTimeField(null=True)
