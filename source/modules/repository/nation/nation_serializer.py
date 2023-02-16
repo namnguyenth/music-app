@@ -1,9 +1,8 @@
-from rest_framework import serializers
-
+from rest_framework.serializers import ModelSerializer
 from modules.models.nation.nation import Nation
 
 
-class NationSerializer(serializers.ModelSerializer):
+class NationSerializer(ModelSerializer):
     class Meta:
         model = Nation
         fields = '__all__'
