@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from modules import views
-from modules.repository.nation.nation import Nation
+from modules.repository.nation.nation import (
+    Nation,
+    NationDetail
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('nation', Nation.as_view()),
+    path('nation/<str:nation_id>/', NationDetail.as_view()),
 ]
