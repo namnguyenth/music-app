@@ -19,11 +19,24 @@ from django.urls import path, include
 from modules import views
 from modules.repository.nation.nation import (
     Nation,
-    NationDetail
+    NationDetail,
 )
+from modules.repository.album.album import (
+    Album,
+    AlbumDetail,
+)
+from modules.repository.artist.artist import (
+    Artist,
+    ArtistDetail
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('nation', Nation.as_view()),
     path('nation/<str:nation_id>/', NationDetail.as_view()),
+    path('album', Album.as_view()),
+    path('album/<str:album_id>/', AlbumDetail.as_view()),
+    path('artist', Artist.as_view()),
+    path('artist/<str:artist_id>/', ArtistDetail.as_view())
 ]

@@ -10,5 +10,5 @@ class Nation(models.Model):
     created_by = models.CharField(max_length=75, null=True)
     updated_date = models.DateTimeField(null=True)
     updated_by = models.CharField(max_length=75, null=True)
-    deleted_date = models.DateTimeField(null=True)
-    deleted_by = models.CharField(max_length=75, null=True)
+    deleted_date = models.DateTimeField(null=True, blank=True)
+    deleted_by = models.CharField(max_length=75, null=True, blank=True)
