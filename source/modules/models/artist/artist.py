@@ -18,7 +18,7 @@ class Artist(models.Model):
 
 class TrackArtist(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
-    track_ref = models.ForeignKey('Track', null=True, on_delete=models.CASCADE)
+    track_ref = models.ForeignKey('track', null=True, on_delete=models.CASCADE)
     artist_ref = models.ForeignKey('Artist', null=True, on_delete=models.CASCADE)
     created_date = models.DateTimeField(null=True)
     created_by = models.CharField(max_length=75, null=True)

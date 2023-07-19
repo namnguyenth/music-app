@@ -43,7 +43,7 @@ def update_nation(request, nation_id):
 
 def get_nation_by_id(nation_id):
     nation = Nation.objects.filter(
-        id__icontains=nation_id,
+        id=nation_id,
         deleted_by__isnull=True,
         deleted_date__isnull=True,
     )

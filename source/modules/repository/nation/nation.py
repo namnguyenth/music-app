@@ -9,7 +9,7 @@ class Nation(APIView):
     def get(self, request):
         data = NationService.get_nation(request)
         response = NationSerializer(data, many=True)
-        return Response(response.data)
+        return Response(data=response.data)
 
     def post(self, request):
         nation = NationService.create_nation(request)

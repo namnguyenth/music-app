@@ -18,7 +18,7 @@ class Playlist(models.Model):
 class PlaylistSystem(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     play_list_ref = models.ForeignKey('Playlist', on_delete=models.CASCADE)
-    track_ref = models.ForeignKey('Track', null=True, on_delete=models.CASCADE)
+    track_ref = models.ForeignKey('track', null=True, on_delete=models.CASCADE)
     # user_ref = models.ForeignKey('auth_user', null=True, on_delete=models.CASCADE)
     description = models.CharField(max_length=500, null=True)
     created_date = models.DateTimeField(null=True)
@@ -32,7 +32,7 @@ class PlaylistSystem(models.Model):
 class PlaylistUser(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     play_list_ref = models.ForeignKey('Playlist', on_delete=models.CASCADE)
-    track_ref = models.ForeignKey('Track', null=True, on_delete=models.CASCADE)
+    track_ref = models.ForeignKey('track', null=True, on_delete=models.CASCADE)
     # user_ref = models.ForeignKey('auth_user', on_delete=models.CASCADE)
     description = models.CharField(max_length=500, null=True)
     created_date = models.DateTimeField(null=True)
