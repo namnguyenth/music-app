@@ -37,8 +37,8 @@ from modules.repository.track.track import (
 )
 
 urlpatterns = [
-    path('api_schema', get_schema_view(title='API SWAGGER', description='Guide for the REST API'), name='api_schema'),
-    path('swagger-ui/',
+    path('api_schema', get_schema_view(title='API DOCUMENT', description='Guide for the REST API'), name='api_schema'),
+    path('',
          TemplateView.as_view(
              template_name='docs.html',
              extra_context={'schema_url': 'api_schema'}

@@ -1,0 +1,2 @@
+
+PAGE_SIZE_DEFAULT = 10

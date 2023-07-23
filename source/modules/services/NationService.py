@@ -1,5 +1,7 @@
 import datetime
+from modules.common.constant import PAGE_SIZE_DEFAULT
 
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 from modules.common import common
@@ -8,13 +10,15 @@ from modules.models.nation.nation import Nation
 
 def get_nation(request):
     search = common.get_request(request, 'search')
+    page = int(common.get_request(request, 'page')) if common.get_request(request, 'page') else 10
+
     if not search:
         search = ''
 
-    nation = Nation.objects.filter(
-        Q(name__icontains=search)
-    )
-    # nation1 = Nation.objects.raw('SELECT * FROM modules_nation')
+    query = Nation.objects.filter(name__icontains=search)
+    paginator = Paginator(query, PAGE_SIZE_DEFAULT)
+    nation = paginator.page(page)
+
     return nation
 
 
