@@ -1,10 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
 
 from modules.repository.nation.nation_serializer import NationSerializer
 from modules.services import NationService
 
 
+@permission_classes([IsAuthenticated])
 class Nation(APIView):
     def get(self, request):
         data = NationService.get_nation(request)
@@ -14,7 +17,7 @@ class Nation(APIView):
     def post(self, request):
         nation = NationService.create_nation(request)
         response = NationSerializer(nation, many=False)
-        return Response("Added successfully !")
+        return Response(data=response.data)
 
 
 class NationDetail(APIView):

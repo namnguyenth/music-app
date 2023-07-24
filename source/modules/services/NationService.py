@@ -1,9 +1,8 @@
 import datetime
+from rest_framework.exceptions import ValidationError, NotFound
 from modules.common.constant import PAGE_SIZE_DEFAULT
-
 from django.core.paginator import Paginator
 from django.db.models import Q
-
 from modules.common import common
 from modules.models.nation.nation import Nation
 
@@ -15,7 +14,7 @@ def get_nation(request):
     if not search:
         search = ''
 
-    query = Nation.objects.filter(name__icontains=search)
+    query = Nation.objects.filter(name__icontains=search).order_by('name')
     paginator = Paginator(query, PAGE_SIZE_DEFAULT)
     nation = paginator.page(page)
 
@@ -35,6 +34,8 @@ def create_nation(request):
 
 def update_nation(request, nation_id):
     nation = Nation.objects.get(id=nation_id)
+    if not nation:
+        raise NotFound(f"Nation id {nation_id} is not exist.")
 
     nation.name = request['name']
     nation.updated_date = datetime.datetime.now()
@@ -51,11 +52,16 @@ def get_nation_by_id(nation_id):
         deleted_by__isnull=True,
         deleted_date__isnull=True,
     )
+    if not nation:
+        raise NotFound(f"Nation id {nation_id} is not exist.")
+
     return nation
 
 
 def delete_nation(nation_id):
     nation = Nation.objects.get(id=nation_id)
+    if not nation:
+        raise NotFound(f"Nation id {nation_id} is not exist.")
 
     nation.deleted_date = datetime.datetime.now()
     nation.deleted_by = 'admin'

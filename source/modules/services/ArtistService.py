@@ -1,6 +1,7 @@
 import datetime
 
 from django.db.models import Q
+from rest_framework.exceptions import NotFound
 
 from modules.common import common
 from modules.models.nation.nation import Nation
@@ -16,18 +17,19 @@ def get_artist(request):
         Q(name__icontains=search)
     )
 
-    for a in artist:
-        a
-
-    # nation1 = Nation.objects.raw('SELECT * FROM modules_artist')
     return artist
 
 
 def create_artist(request):
+    nation_ref = Nation.objects.filter(id=int(request.data['nation_ref']))
+
+    if not nation_ref:
+        raise NotFound("nation_ref is not exist")
+
     artist = Artist.objects.create(
         name=request.data['name'],
         birth_date=request.data['birth_date'],
-        nation_ref=int(request.data['nation_ref']),
+        nation_ref=nation_ref,
         created_date=datetime.datetime.now(),
         created_by='admin',
         updated_date=datetime.datetime.now(),
