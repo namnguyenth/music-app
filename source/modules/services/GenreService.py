@@ -10,7 +10,7 @@ from modules.models.genre.genre import (
 
 def get_genre(request):
     search = common.get_request(request, 'search')
-    page = int(common.get_request(request, 'page')) if common.get_request(request, 'page') else 10
+    page = int(common.get_request(request, 'page')) if common.get_request(request, 'page') else 1
 
     if not search:
         search = ''

@@ -20,6 +20,7 @@ class Nation(APIView):
         return Response(data=response.data)
 
 
+@permission_classes([IsAuthenticated])
 class NationDetail(APIView):
     def post(self, request, nation_id):
         nation = NationService.update_nation(request.data, nation_id)

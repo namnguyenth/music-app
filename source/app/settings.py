@@ -129,10 +129,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'music-db',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
+        'NAME': 'music_db',
+        'USER': 'admin',
+        'PASSWORD': '12345678',
+        'HOST': 'music-db.cf4kuad7cfau.ap-southeast-1.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
